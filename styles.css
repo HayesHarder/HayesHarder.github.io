@@ -1,15 +1,21 @@
 body {
     font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    gap: 40px; /* Adds space between the calculator and the notepad */
 }
 
 .calculator {
-    width: 320px; /* Set a fixed width for the calculator */
+    width: 320px;
     border-radius: 10px;
     background-color: #333;
     padding: 20px;
@@ -17,17 +23,17 @@ body {
 }
 
 #display {
-    width: 95%;
-    height: 50px; /* Adjusted height for better proportions */
+    width: 100%;
+    height: 50px;
     background-color: #222;
     color: #fff;
     text-align: right;
-    font-size: 1.5em; /* Slightly reduced font size */
+    font-size: 1.5em;
     border: none;
     outline: none;
     border-radius: 5px;
     margin-bottom: 20px;
-    padding: 0 10px; /* Adjust padding to avoid overcrowding */
+    padding: 0 10px;
 }
 
 .buttons {
@@ -38,7 +44,7 @@ body {
 
 button {
     padding: 20px;
-    font-size: 1.2em; /* Slightly reduced font size for better fit */
+    font-size: 1.2em;
     background-color: #555;
     color: white;
     border: none;
@@ -47,14 +53,47 @@ button {
     transition: background-color 0.2s;
 }
 
-button:hover {
-    background-color: #777;
-}
-
 button.zero {
     grid-column: span 2;
 }
 
+button:hover {
+    background-color: #777;
+}
+
 button:active {
     background-color: #999;
+}
+
+/* Notepad Section */
+#notepad {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+#notepadTextbox {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2em;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+button {
+    margin: 5px 0;
+    padding: 10px 15px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+button:hover {
+    background-color: #777;
 }
