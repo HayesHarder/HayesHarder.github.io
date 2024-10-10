@@ -56,12 +56,14 @@ function checkSequence() {
 
 // Reveal the notepad
 function revealNotepad() {
-    notepad.style.display = "block";
+    notepad.classList.remove("hidden");
+    notepad.classList.add("visible");
 }
 
 // Hide the notepad
 function hideNotepad() {
-    notepad.style.display = "none";
+    notepad.classList.remove("visible");
+    notepad.classList.add("hidden");
 }
 
 // Function to download the notepad content as a .txt file
