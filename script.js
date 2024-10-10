@@ -1,17 +1,17 @@
 let display = document.getElementById("display");
-let secretNote = document.getElementById("secretNote"); // Div containing the textbox and the buttons
-let secretTextbox = document.getElementById("secretTextbox"); // The hidden textbox
-let sequence = [];  // Array to track the sequence of pressed keys
-let secretCode = ['C', 'C', 'DEL', 'DEL', '5', '5', '4']; // Secret combination
+let notepad = document.getElementById("notepad");
+let notepadTextbox = document.getElementById("notepadTextbox");
+let sequence = [];
+let secretCode = ['C', 'C', 'DEL', 'DEL', '5', '5', '4']; // Secret code
 
-// Append number to display and sequence
+// Append number to display
 function appendNumber(number) {
     display.value += number;
     sequence.push(number);
     checkSequence();
 }
 
-// Append operator to display and sequence
+// Append operator to display
 function appendOperator(operator) {
     if (display.value !== "") {
         display.value += operator;
@@ -20,21 +20,21 @@ function appendOperator(operator) {
     }
 }
 
-// Clear display and add 'C' to the sequence
+// Clear display
 function clearDisplay() {
     display.value = "";
     sequence.push('C');
     checkSequence();
 }
 
-// Delete last character and add 'DEL' to the sequence
+// Delete last character
 function deleteLast() {
     display.value = display.value.slice(0, -1);
     sequence.push('DEL');
     checkSequence();
 }
 
-// Calculate the result using eval (try-catch for error handling)
+// Calculate the result
 function calculateResult() {
     try {
         display.value = eval(display.value);
@@ -45,47 +45,47 @@ function calculateResult() {
 
 // Check if the sequence matches the secret code
 function checkSequence() {
-    // Trim sequence to the length of the secret code
     if (sequence.length > secretCode.length) {
         sequence.shift();
     }
 
-    // Check if sequence matches the secret code
     if (JSON.stringify(sequence) === JSON.stringify(secretCode)) {
-        revealSecretTextbox();
+        revealNotepad();
     }
 }
 
-// Reveal the hidden textbox and buttons
-function revealSecretTextbox() {
-    secretNote.style.display = "block";
+// Reveal the notepad
+function revealNotepad() {
+    notepad.style.display = "flex";
 }
 
-// Hide the hidden textbox and buttons
-function hideSecretTextbox() {
-    secretNote.style.display = "none";
+// Hide the notepad
+function hideNotepad() {
+    notepad.style.display = "none";
 }
 
-// Function to print the message in the hidden textbox
-function printSecretMessage() {
-    let message = secretTextbox.value;
+// Function to download the notepad content as a .txt file
+function downloadNotepad() {
+    let text = notepadTextbox.value;
 
-    if (message.trim() === "") {
-        alert("There's no message to print!");
+    if (text.trim() === "") {
+        alert("The notepad is empty!");
         return;
     }
 
-    let printWindow = window.open('', '_blank', 'width=600,height=400');
-    printWindow.document.write(`
-        <html>
-        <head><title>Print Message</title></head>
-        <body>
-            <h3>Your Secret Message:</h3>
-            <p>${message}</p>
-        </body>
-        </html>
-    `);
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
+    // Create a blob with the notepad content
+    let blob = new Blob([text], { type: "text/plain" });
+    let url = window.URL.createObjectURL(blob);
+
+    // Create a temporary link to download the file
+    let a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.download = "notepad.txt"; // File name
+    document.body.appendChild(a);
+    a.click();
+
+    // Remove the temporary link
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
 }
