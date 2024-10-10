@@ -9,6 +9,7 @@ body {
 }
 
 .calculator {
+    width: 320px; /* Set a fixed width for the calculator */
     border-radius: 10px;
     background-color: #333;
     padding: 20px;
@@ -17,15 +18,16 @@ body {
 
 #display {
     width: 100%;
-    padding: 15px;
+    height: 50px; /* Adjusted height for better proportions */
     background-color: #222;
     color: #fff;
     text-align: right;
-    font-size: 2em;
+    font-size: 1.5em; /* Slightly reduced font size */
     border: none;
     outline: none;
     border-radius: 5px;
     margin-bottom: 20px;
+    padding: 0 10px; /* Adjust padding to avoid overcrowding */
 }
 
 .buttons {
@@ -36,7 +38,7 @@ body {
 
 button {
     padding: 20px;
-    font-size: 1.5em;
+    font-size: 1.2em; /* Slightly reduced font size for better fit */
     background-color: #555;
     color: white;
     border: none;
