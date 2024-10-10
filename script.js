@@ -56,7 +56,7 @@ function checkSequence() {
 
 // Reveal the notepad
 function revealNotepad() {
-    notepad.style.display = "flex";
+    notepad.style.display = "block";
 }
 
 // Hide the notepad
