@@ -9,7 +9,7 @@ body {
 }
 
 .calculator {
-    width: 320px; /* Set a fixed width for the calculator */
+    width: 300px; /* Set a fixed width for the calculator */
     border-radius: 10px;
     background-color: #333;
     padding: 20px;
