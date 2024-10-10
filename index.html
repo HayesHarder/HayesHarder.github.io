@@ -34,8 +34,11 @@
             <button onclick="appendNumber('.')">.</button>
         </div>
 
-        <!-- Hidden Textbox -->
-        <input type="text" id="secretTextbox" style="display: none; margin-top: 20px;" placeholder="Type anything...">
+        <!-- Hidden Textbox and Back Button -->
+        <div id="secretNote" style="display: none; margin-top: 20px;">
+            <input type="text" id="secretTextbox" placeholder="Type anything...">
+            <button onclick="hideSecretTextbox()">Back</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
