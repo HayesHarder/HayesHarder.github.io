@@ -1,5 +1,6 @@
 let display = document.getElementById("display");
-let secretNote = document.getElementById("secretNote"); // Div containing the textbox and the back button
+let secretNote = document.getElementById("secretNote"); // Div containing the textbox and the buttons
+let secretTextbox = document.getElementById("secretTextbox"); // The hidden textbox
 let sequence = [];  // Array to track the sequence of pressed keys
 let secretCode = ['C', 'C', 'DEL', 'DEL', '5', '5', '4']; // Secret combination
 
@@ -55,12 +56,36 @@ function checkSequence() {
     }
 }
 
-// Reveal the hidden textbox and "Back" button
+// Reveal the hidden textbox and buttons
 function revealSecretTextbox() {
     secretNote.style.display = "block";
 }
 
-// Hide the hidden textbox and "Back" button
+// Hide the hidden textbox and buttons
 function hideSecretTextbox() {
     secretNote.style.display = "none";
+}
+
+// Function to print the message in the hidden textbox
+function printSecretMessage() {
+    let message = secretTextbox.value;
+
+    if (message.trim() === "") {
+        alert("There's no message to print!");
+        return;
+    }
+
+    let printWindow = window.open('', '_blank', 'width=600,height=400');
+    printWindow.document.write(`
+        <html>
+        <head><title>Print Message</title></head>
+        <body>
+            <h3>Your Secret Message:</h3>
+            <p>${message}</p>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
 }
