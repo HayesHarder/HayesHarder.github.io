@@ -11,7 +11,8 @@ body {
 
 .container {
     display: flex;
-    gap: 40px; /* Adds space between the calculator and the notepad */
+    position: relative; /* Make sure the container is positioned relative */
+    gap: 40px; /* Space between calculator and notepad */
 }
 
 .calculator {
@@ -20,10 +21,11 @@ body {
     background-color: #333;
     padding: 20px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2; /* Calculator stays on top */
 }
 
 #display {
-    width: 95%;
+    width: 100%;
     height: 50px;
     background-color: #222;
     color: #fff;
@@ -65,16 +67,36 @@ button:active {
     background-color: #999;
 }
 
-/* Notepad thing */
+/* Notepad Section */
 #notepad {
     width: 400px;
-    display: flex;
-    flex-direction: column;
+    height: 320px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    left: 320px; /* Hidden to the left of the calculator */
+    top: 0;
+    z-index: 1;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+#notepad.visible {
+    transform: translateX(40px); /* Slide to the right and show beside calculator */
+    opacity: 1;
+}
+
+#notepad.hidden {
+    transform: translateX(-100%); /* Hide back behind the calculator */
+    opacity: 0;
 }
 
 #notepadTextbox {
     width: 100%;
-    height: 300px;
+    height: 250px;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
